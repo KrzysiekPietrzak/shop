@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -10,13 +13,13 @@ class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     
-    public function index()
+    public function index():Factory|View|Application
     {
         return view('users.index',[
-            'users' => User::all()
+            'users' => User::paginate(2)
         ]);
     }
 
@@ -65,6 +68,11 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+        $flight = User::find($id);
+        $flight->delete();
+        return response()->json([
+            'status' => 'success'
+        ]);
         //
     }
 }

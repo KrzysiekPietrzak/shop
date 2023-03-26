@@ -12,9 +12,12 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+<script src="/js/jquery.js"></script>
 
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+            @vite(['resources/css/app.css','resources/js/app.js'])
+
+
+   
 </head>
 <body>
     <div id="app">
@@ -77,5 +80,14 @@
             @yield('content')
         </main>
     </div>
-</body>
+ <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+ 
+<script type="text/javascript">
+ 
+@yield('javascript')
+ 
+</script>
+    </body>
 </html>
