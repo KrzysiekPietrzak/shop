@@ -34,19 +34,10 @@
 @endsection
 
 @section('javascript')
-    $(function(){
-        $('.delete').click(function(){
-            $.ajax({
-                method: "DELETE",
-                url: "http://shop.test/users/"+$(this).data("id")
-                //data: { id :$(this).data("id") }
-            })
-            .done(function( msg ) {
-                window.location.reload();
-            })
-            .fail(function(response){
-                alert("data NOT removed");
-            });
-        });
-    });
+const deleteURL = "{{url('users')}}/"
+
+@endsection
+@section('js-files')
+    @vite(['resources/js/delete.js'])
+
 @endsection
