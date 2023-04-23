@@ -8,7 +8,7 @@
                 <div class="card-header">Edycja produktów</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('products.update',$product->id) }}">
+                    <form method="POST" action="{{ route('products.update',$product->id) }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
@@ -73,8 +73,21 @@
                             </div>
                         </div>
 
-                       
+                                                                       <div class="row mb-3">
+                            <label for="image" class="col-md-4 col-form-label text-md-end">Grafika</label>
+
+                            <div class="col-md-6">
+                                <input id="image" type="file" class="form-control" name="image" value="{{ old('image_path') }}">
+
+                            </div>
+                        </div>
     
+                        <div class="form-group row justify-content-center">
+                            <div class="col-md-6">
+                         <img src="{{Vite::asset('/public/storage/'.$product->image_path)}}" class="img-fluid mx-auto d-block"  alt="Zdjecie produktu">
+                     </div>
+                        </div>
+
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
