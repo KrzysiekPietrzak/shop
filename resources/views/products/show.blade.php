@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-    <img src="C:\Users\krzys\OneDrive\Pulpit\LB_6\tr_el\public\storage\products\1.jpg">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
