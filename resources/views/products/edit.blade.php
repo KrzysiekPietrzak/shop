@@ -84,8 +84,10 @@
     
                         <div class="form-group row justify-content-center">
                             <div class="col-md-6">
+                                @if(!is_null($product->image_path))
                          <img src="{{Vite::asset('/public/storage/'.$product->image_path)}}" class="img-fluid mx-auto d-block"  alt="Zdjecie produktu">
-                     </div>
+                     @endif
+                        </div>
                         </div>
 
 

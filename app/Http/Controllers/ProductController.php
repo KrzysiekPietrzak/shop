@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage;
 use PHPUnit\Exception;
+use App\Http\Requests\UpsertProductRequest;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,7 @@ class ProductController extends Controller
     public function index(): View
     {
         return view("products.index",[
-            'products' => Product::paginate(2)
+            'products' => Product::paginate(10)
         ]);
 
     }
@@ -36,12 +37,14 @@ class ProductController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UpsertProductRequest $request
      * @return RedirectResponse
      * Store a newly created resource in storage.
      */
-    public function store(Request $request):RedirectResponse
+    public function store(UpsertProductRequest $request):RedirectResponse
     {
+    
+       $product = new Product($request->validated());
         $product = new Product($request->all());
 //        $product->image_path = $request->file('image')->store('products');
                if ($request->hasFile('image')){
@@ -83,9 +86,9 @@ class ProductController extends Controller
      * @return RedirectResponse
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product):RedirectResponse
+    public function update(UpsertProductRequest $request, Product $product):RedirectResponse
     {
-        $product->fill($request->all());
+        $product->fill($request->validated());
         if ($request->hasFile('image')){
             $product->image_path = Storage::disk('public')->putFile('products', $request->file('image'));
         }
