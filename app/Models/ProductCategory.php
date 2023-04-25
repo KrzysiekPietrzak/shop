@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Product extends Model
+class ProductCategory extends Model
 {
     use HasFactory;
 
@@ -16,18 +16,11 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'image_path',
-        'name',
-        'description',
-        'amount',
-        'price',
-        'category_id'
+        'name'
     ];
 
     public function products(): HasMany
     {
-        return $this->HasMany(Product::class);
+        return $this->hasMany(Product::class);
     }
-
-
 }
